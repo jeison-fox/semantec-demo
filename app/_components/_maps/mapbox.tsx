@@ -14,7 +14,7 @@ export default function MapBoxMap({
 
   mapboxgl.accessToken = mapboxToken;
 
-  const addLinesLayer = useCallback((map) => {
+  const addLinesLayer = useCallback((map: mapboxgl.Map) => {
     map.addLayer({
       id: "districts_line",
       type: "line",
