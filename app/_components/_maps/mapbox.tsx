@@ -28,14 +28,14 @@ export default function MapBoxMap({
     });
   }, []);
 
-  const addMapSource = useCallback((map) => {
+  const addMapSource = useCallback((map: mapboxgl.Map) => {
     map.addSource("districts", {
       type: "geojson",
       data: "https://raw.githubusercontent.com/jeison-fox/geojson/main/singapore_postal_districts.json",
     });
   }, []);
 
-  const addDistrictsLayer = useCallback((map) => {
+  const addDistrictsLayer = useCallback((map: mapboxgl.Map) => {
     map.addLayer({
       id: "districts",
       type: "fill",
@@ -48,7 +48,7 @@ export default function MapBoxMap({
     });
   }, []);
 
-  const handleDistrictsClick = useCallback((e, map) => {
+  const handleDistrictsClick = useCallback((e, map: mapboxgl.Map) => {
     const features = map.queryRenderedFeatures(e.point, {
       layers: ["districts"],
     });
