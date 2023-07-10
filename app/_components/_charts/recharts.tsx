@@ -28,7 +28,7 @@ export default function RechartsLineChart({ data }: RechartsLineChartProps) {
       payload,
       label,
     }: TooltipProps<number, string>) => {
-      if (active && payload && payload.length && payload[0].value > 50) {
+      if (active && payload && payload.length && payload[0]?.value > 50) {
         return (
           <div className="bg-[#453cb4] flex px-4 py-2 rounded-full font-bold text-sm text-white">
             <p className="mr-2">{`Date: ${label}`}</p>
