@@ -11,7 +11,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function RechartsLineChart({ data }) {
+type DataPoint = {
+  x: string;
+  y: number;
+};
+
+type RechartsLineChartProps = {
+  data: DataPoint[];
+};
+
+export default function RechartsLineChart({ data }: RechartsLineChartProps) {
   const CustomTooltip = useCallback(
     ({
       active,
