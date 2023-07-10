@@ -9,7 +9,7 @@ export default function MapBoxMap({
 }: {
   mapboxToken: string;
 }): JSX.Element {
-  const mapContainer = useRef<string | HTMLElement | null>(null);
+  const mapContainer = useRef<string | HTMLElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
 
   mapboxgl.accessToken = mapboxToken;
@@ -69,7 +69,7 @@ export default function MapBoxMap({
   );
 
   useEffect(() => {
-    if (map.current) return;
+    if (map.current || !mapContainer.current) return;
 
     map.current = new mapboxgl.Map({
       center: [103.8198, 1.3521],
