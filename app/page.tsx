@@ -1,7 +1,7 @@
 import MapBoxMap from "./_components/_maps/mapbox";
 import RechartsLineChart from "./_components/_charts/recharts";
 
-export default async function Home(): JSX.Element {
+export default function Home(): JSX.Element {
   const mapboxToken = process.env.MAPBOX_PUBLIC_TOKEN;
 
   const chartData = [
