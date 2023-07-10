@@ -33,7 +33,7 @@ export default function RechartsLineChart({ data }: RechartsLineChartProps) {
         payload &&
         payload !== undefined &&
         payload.length > 0 &&
-        payload[0].value !== undefined;
+        payload[0].value !== undefined &&
         payload[0].value > 50;
 
       if (showTooltip) {
