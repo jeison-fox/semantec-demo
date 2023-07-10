@@ -48,22 +48,25 @@ export default function MapBoxMap({
     });
   }, []);
 
-  const handleDistrictsClick = useCallback((e, map: mapboxgl.Map) => {
-    const features = map.queryRenderedFeatures(e.point, {
-      layers: ["districts"],
-    });
+  const handleDistrictsClick = useCallback(
+    (e: MapMouseEvent, map: mapboxgl.Map) => {
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: ["districts"],
+      });
 
-    if (features.length > 0) {
-      const featuredName = features[0].properties.id;
+      if (features.length > 0) {
+        const featuredName = features[0].properties.id;
 
-      map.setPaintProperty("districts", "fill-color", [
-        "case",
-        ["==", ["get", "id"], featuredName],
-        "#f00",
-        "#088",
-      ]);
-    }
-  }, []);
+        map.setPaintProperty("districts", "fill-color", [
+          "case",
+          ["==", ["get", "id"], featuredName],
+          "#f00",
+          "#088",
+        ]);
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     if (map.current) return;
@@ -81,7 +84,7 @@ export default function MapBoxMap({
       addLinesLayer(map.current);
     });
 
-    map.current.on("click", "districts", (e) => {
+    map.current.on("click", "districts", (e: MapMouseEvent) => {
       handleDistrictsClick(e, map.current);
     });
   }, [
