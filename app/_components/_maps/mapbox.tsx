@@ -79,13 +79,17 @@ export default function MapBoxMap({
     });
 
     map.current.on("load", () => {
-      addMapSource(map.current);
-      addDistrictsLayer(map.current);
-      addLinesLayer(map.current);
+      if (map.current) {
+        addMapSource(map.current);
+        addDistrictsLayer(map.current);
+        addLinesLayer(map.current);
+      }
     });
 
     map.current.on("click", "districts", (e: mapboxgl.MapMouseEvent) => {
-      handleDistrictsClick(e, map.current);
+      if (map.current) {
+        handleDistrictsClick(e, map.current);
+      }
     });
   }, [
     addDistrictsLayer,
