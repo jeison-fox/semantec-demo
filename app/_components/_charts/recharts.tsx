@@ -8,16 +8,13 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  TooltipProps,
   ResponsiveContainer,
 } from "recharts";
 
 type DataPoint = {
   x: string;
   y: number;
-};
-
-type Payload = {
-  value: number;
 };
 
 type RechartsLineChartProps = {
@@ -30,11 +27,7 @@ export default function RechartsLineChart({ data }: RechartsLineChartProps) {
       active,
       payload,
       label,
-    }: {
-      active: boolean;
-      payload: Payload[];
-      label: string;
-    }) => {
+    }: TooltipProps<number, string>) => {
       if (active && payload && payload.length && payload[0].value > 50) {
         return (
           <div className="bg-[#453cb4] flex px-4 py-2 rounded-full font-bold text-sm text-white">
