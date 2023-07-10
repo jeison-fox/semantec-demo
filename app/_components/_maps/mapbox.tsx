@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import mapboxgl  from "mapbox-gl";
+import mapboxgl, { MapMouseEvent } from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 export default function MapBoxMap({
@@ -49,7 +49,7 @@ export default function MapBoxMap({
   }, []);
 
   const handleDistrictsClick = useCallback(
-    (e: MouseEvent, map: mapboxgl.Map) => {
+    (e: mapboxgl.MapMouseEvent, map: mapboxgl.Map) => {
       const features = map.queryRenderedFeatures(e.point, {
         layers: ["districts"],
       });
@@ -84,7 +84,7 @@ export default function MapBoxMap({
       addLinesLayer(map.current);
     });
 
-    map.current.on("click", "districts", (e: MouseEvent) => {
+    map.current.on("click", "districts", (e: mapboxgl.MapMouseEvent) => {
       handleDistrictsClick(e, map.current);
     });
   }, [
