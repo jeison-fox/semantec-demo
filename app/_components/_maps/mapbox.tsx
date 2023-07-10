@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import mapboxgl, { Map as MapboxMap } from "mapbox-gl";
+import mapboxgl from "mapbox-gl";
+import { EventData, GeoJSONSource, Layer, Map } from "@types/mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 export default function MapBoxMap({
@@ -10,11 +11,11 @@ export default function MapBoxMap({
   mapboxToken: string;
 }): JSX.Element {
   const mapContainer = useRef<HTMLElement | null>(null);
-  const map = useRef<MapboxMap | null>(null);
+  const map = useRef<Map | null>(null);
 
   mapboxgl.accessToken = mapboxToken;
 
-  const addLinesLayer = useCallback((map: MapboxMap) => {
+  const addLinesLayer = useCallback((map: Map) => {
     map.addLayer({
       id: "districts_line",
       type: "line",
@@ -25,17 +26,17 @@ export default function MapBoxMap({
         "line-opacity": 0.5,
         "line-width": 1,
       },
-    } as LineLayer);
+    } as Layer);
   }, []);
 
-  const addMapSource = useCallback((map: MapboxMap) => {
+  const addMapSource = useCallback((map: Map) => {
     map.addSource("districts", {
       type: "geojson",
       data: "https://raw.githubusercontent.com/jeison-fox/geojson/main/singapore_postal_districts.json",
-    } as mapboxgl.GeoJSONSourceRaw);
+    } as GeoJSONSource);
   }, []);
 
-  const addDistrictsLayer = useCallback((map: MapboxMap) => {
+  const addDistrictsLayer = useCallback((map: Map) => {
     map.addLayer({
       id: "districts",
       type: "fill",
@@ -45,10 +46,10 @@ export default function MapBoxMap({
         "fill-color": "#088",
         "fill-opacity": 0.8,
       },
-    } as FillLayer);
+    } as Layer);
   }, []);
 
-  const handleDistrictsClick = useCallback((e: any, map: MapboxMap) => {
+  const handleDistrictsClick = useCallback((e: EventData, map: Map) => {
     const features = map.queryRenderedFeatures(e.point, {
       layers: ["districts"],
     });
@@ -76,13 +77,13 @@ export default function MapBoxMap({
     });
 
     map.current.on("load", () => {
-      addMapSource(map.current as MapboxMap);
-      addDistrictsLayer(map.current as MapboxMap);
-      addLinesLayer(map.current as MapboxMap);
+      addMapSource(map.current as Map);
+      addDistrictsLayer(map.current as Map);
+      addLinesLayer(map.current as Map);
     });
 
-    map.current.on("click", "districts", (e: any) => {
-      handleDistrictsClick(e, map.current as MapboxMap);
+    map.current.on("click", "districts", (e: EventData) => {
+      handleDistrictsClick(e, map.current as Map);
     });
   }, [
     addDistrictsLayer,
