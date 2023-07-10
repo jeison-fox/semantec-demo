@@ -16,6 +16,10 @@ type DataPoint = {
   y: number;
 };
 
+type Payload = {
+  value: number;
+};
+
 type RechartsLineChartProps = {
   data: DataPoint[];
 };
@@ -28,7 +32,7 @@ export default function RechartsLineChart({ data }: RechartsLineChartProps) {
       label,
     }: {
       active: boolean;
-      payload: any;
+      payload: Payload[];
       label: string;
     }) => {
       if (active && payload && payload.length && payload[0].value > 50) {
