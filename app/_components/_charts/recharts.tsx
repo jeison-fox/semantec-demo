@@ -28,7 +28,12 @@ export default function RechartsLineChart({ data }: RechartsLineChartProps) {
       payload,
       label,
     }: TooltipProps<number, string>) => {
-      const showTooltip = active && payload && payload.length > 0 && payload[0]?.value > 50;
+      const showTooltip =
+        active &&
+        payload &&
+        payload.length > 0 &&
+        payload[0] &&
+        payload[0].value > 50;
 
       if (showTooltip) {
         return (
