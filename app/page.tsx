@@ -19,6 +19,10 @@ export default function Home(): JSX.Element {
     { x: "8/2", y: 20 },
   ];
 
+  if (!mapboxToken) {
+    throw new Error("Missing MapBox token");
+  }
+
   return (
     <main>
       <MapBoxMap mapboxToken={mapboxToken} />
