@@ -9,7 +9,7 @@ export default function MapBoxMap({
 }: {
   mapboxToken: string;
 }): JSX.Element {
-  const mapContainer = useRef<string | HTMLElement>(null);
+  const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
 
   mapboxgl.accessToken = mapboxToken;
