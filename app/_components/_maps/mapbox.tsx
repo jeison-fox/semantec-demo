@@ -54,8 +54,8 @@ export default function MapBoxMap({
         layers: ["districts"],
       });
 
-      if (features.length > 0) {
-        const featuredName = features[0].properties.id;
+      if (features && features.length > 0) {
+        const featuredName = features[0]?.properties?.id;
 
         map.setPaintProperty("districts", "fill-color", [
           "case",
