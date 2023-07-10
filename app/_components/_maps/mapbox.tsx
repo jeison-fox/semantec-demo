@@ -49,7 +49,7 @@ export default function MapBoxMap({
   }, []);
 
   const handleDistrictsClick = useCallback(
-    (e: MapMouseEvent, map: mapboxgl.Map) => {
+    (e: MouseEvent, map: mapboxgl.Map) => {
       const features = map.queryRenderedFeatures(e.point, {
         layers: ["districts"],
       });
@@ -84,7 +84,7 @@ export default function MapBoxMap({
       addLinesLayer(map.current);
     });
 
-    map.current.on("click", "districts", (e: MapMouseEvent) => {
+    map.current.on("click", "districts", (e: MouseEvent) => {
       handleDistrictsClick(e, map.current);
     });
   }, [
