@@ -1,0 +1,7 @@
+.eslintrc.json
+next.config.js
+package.json
+postcss.config.js
+README.md
+tailwind.config.js
+tsconfig.json
