@@ -1,21 +1,35 @@
 "use server";
 
-export const login = (
+export default async function login(
   email: string,
   password: string,
-): Promise<ILoginResponse> => {
-  // here should be the code to login the user
+): Promise<LoginResponse> {
+  try {
+    const apiUrl = process.env.API_URL;
 
-  return Promise.resolve({
-    error: null,
-    status: 200,
-    user: {
-      email,
-      password,
-    },
-  });
-};
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: email,
+        password,
+      }),
+    };
 
-export const logout = async () => {
-  // remove user from local storage to log user out
-};
+    const response = await fetch(`${apiUrl}/login`, requestOptions);
+
+    if (!response.ok) {
+      return { error: "Error fetching geographic data" };
+    }
+
+    return (await response.json()) as LoginResponse;
+  } catch (error) {
+    if (error instanceof Error) {
+      return { error: error.message };
+    }
+
+    return { error: "An unexpected error occurred fetching geographic data" };
+  }
+}

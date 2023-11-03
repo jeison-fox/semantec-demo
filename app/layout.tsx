@@ -2,11 +2,11 @@ import "@/styles/globals.css";
 
 import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ display: "swap", subsets: ["latin"] });
 
 export const metadata = {
   title: "Semantec",
-  description: "Semanted poc application",
+  description: "Semantec data visualization POC",
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${inter.className} bg-[#2A2379] h-full`}>
+      <body className={`${inter.className} bg-green-dark-jungle h-full`}>
         {children}
       </body>
     </html>

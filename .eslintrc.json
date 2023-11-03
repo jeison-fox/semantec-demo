@@ -34,6 +34,7 @@
         "allowAsStatement": true
       }
     ],
+    "react/button-has-type": "off",
     "react/jsx-filename-extension": [
       1,
       {

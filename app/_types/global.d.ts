@@ -1,22 +1,17 @@
 export {};
 
 declare global {
-  interface ILinkData {
-    href: string;
-    name: string;
-  }
+  type ApiError = {
+    message: string;
+    statusCode: number;
+  };
 
-  interface ILoginFormElement extends HTMLFormElement {
-    email: HTMLInputElement;
-    password: HTMLInputElement;
-  }
+  type CaptionProps = {
+    type: "trend" | "geographic";
+  };
 
-  interface ILoginResponse {
-    error: string | null;
-    status: number;
-    user: {
-      email: string;
-      password: string;
-    };
-  }
+  type DataTypes = {
+    trend: "trend";
+    geographic: "geographic";
+  };
 }

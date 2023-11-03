@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext", "es2015"],
     "allowJs": true,
     "baseUrl": ".",
+    "declaration": true,
     "skipLibCheck": true,
+    "sourceMap": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "noImplicitAny": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -23,8 +26,13 @@
     "paths": {
       "@/*": ["./*"],
       "@/actions/*": ["app/_actions/*"],
+      "@/constants/*": ["app/_constants/*"],
+      "@/context/*": ["app/_context/*"],
       "@/components/*": ["app/_components/*"],
-      "@/public/*": ["public/*"]
+      "@/hooks/*": ["app/_hooks/*"],
+      "@/mocks/*": ["app/_mocks/*"],
+      "@/public/*": ["public/*"],
+      "@/utils/*": ["app/_utils/*"]
     },
     "typeRoots": ["app/_types", "./node_modules/@types"]
   },

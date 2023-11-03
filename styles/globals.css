@@ -15,3 +15,8 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+/* Mapbox */
+.mapboxgl-ctrl-bottom-left {
+  display: none;
+}
