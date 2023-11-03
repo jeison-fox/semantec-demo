@@ -6,7 +6,7 @@ export const dataTypes: DataTypes = {
 export const domain =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
-    : "https://app.semantec.ai";
+    : "https://semantec-demo.vercel.app";
 
 export const loadingMessages: LoadingMessages = {
   trend: {
